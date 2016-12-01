@@ -5,6 +5,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application();
 
+$app->get('/', function () {
+    return "Hello World!!!!";
+});
+
 $app->post('/callback', function (Request $request) use ($app) {
     error_log($request);
 //    $client = new GuzzleHttp\Client();
