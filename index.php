@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+require('vendor/autoload.php');
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -8,6 +8,16 @@ $app = new Silex\Application();
 
 $app->get('/', function () {
     return "Hello World!!!!";
+});
+
+$app->before(function (Request $request) {
+    // Signature validation
+    $request_body = $request->getContent();
+    $signature = $request->headers->get('X-LINE-CHANNELSIGNATURE');
+    error_log($signature);
+//    if (!$bot->isValid($signature, $request_body)) {
+//        return new Response('Signature validation failed.', 400);
+//    }
 });
 
 $app->post('/callback', function (Request $request) {
