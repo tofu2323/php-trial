@@ -21,9 +21,7 @@ $app->before(function (Request $request) {
 });
 
 $app->post('/callback', function (Request $request) {
-    $message = $request->get('message');
-    fwrite($message, "hello world to message\n");
-    return new Response('Thank you for your feedback!', 201);
+    return 'OK';
 });
 
 //$app->post('/callback', function (Request $request) use ($app) {
